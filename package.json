@@ -1,0 +1,23 @@
+{
+  "name": "teamhtmlgen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AKim47/TeamHTMLGen.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AKim47/TeamHTMLGen/issues"
+  },
+  "homepage": "https://github.com/AKim47/TeamHTMLGen#readme",
+  "devDependencies": {
+    "jes": "^0.6.1",
+    "jest": "^27.3.1"
+  }
+}
