@@ -2,7 +2,9 @@ const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
-// const fs = require('fs');
+const fs = require("fs");
+const generatePage = require('./src/page-template.js');
+const { writeFile, copyFile } = require('./utils/generate-site.js');
 
 const promptManager = teamData => {
     teamData = [];
@@ -45,6 +47,12 @@ const promptManager = teamData => {
                     return false;
                 }
             }
+        },
+        {
+            type: 'list',
+            name: 'role',
+            message: 'This role is the Manager',
+            choices: ['Manager']
         },
         {
             type: 'input',
@@ -121,6 +129,12 @@ const promptEngineer = teamData => {
             }
         },
         {
+            type: 'list',
+            name: 'role',
+            message: 'This role is the Engineer',
+            choices: ['Engineer']
+        },
+        {
             type: 'input',
             name: 'github',
             message: 'Enter the github link (Required)',
@@ -195,6 +209,12 @@ const promptIntern = teamData => {
             }
         },
         {
+            type: 'list',
+            name: 'role',
+            message: 'This role is the Intern',
+            choices: ['Intern']
+        },
+        {
             type: 'input',
             name: 'school',
             message: 'Enter the school name (Required)',
@@ -228,9 +248,23 @@ const promptIntern = teamData => {
 };
 
 promptManager()
-    .then(teamData =>{
-        console.log(teamData);
+    .then(teamData => {
+        console.log(teamData)
+        return teamData;
+    })
+    .then(teamData => {
+        return generatePage(teamData);
+    })
+    .then(pageHTML => {
+        return writeFile(pageHTML);
+    })
+    .then(writeFileResponse => {
+    console.log(writeFileResponse);
+    return copyFile();
+    })
+    .then(copyFileResponse => {
+    console.log(copyFileResponse);
+    })
+    .catch(err => {
+    console.log(err);
     });
-//     .then(teamData => {
-        
-//     })
